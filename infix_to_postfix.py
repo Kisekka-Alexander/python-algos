@@ -1,15 +1,17 @@
 
 """
 
-1. Create an empty stack called operand_stack.
-2. Convert the string to a list by using the string method split.
+1. Create an empty stack called op_stack for keeping operators. Create an empty list for
+output.
+2. Convert the input infix string to a list by using the string method split.
 3. Scan the token list from left to right.
-• If the token is an operand, convert it from a string to an integer and push the value
-onto the operand_stack.
-• If the token is an operator, *, /, +, or −, it will need two operands. Pop the
-operand_stack twice. The first pop is the second operand and the second pop is
-the first operand. Perform the arithmetic operation. Push the result back on the
-operand_stack
+• If the token is an operand, append it to the end of the output list.
+• If the token is a left parenthesis, push it on the op_stack.
+• If the token is a right parenthesis, pop the op_stack until the corresponding left
+parenthesis is removed. Append each operator to the end of the output list.
+• If the token is an operator, *, /, +, or −, push it on the op_stack. However, first
+remove any operators already on the op_stack that have higher or equal precedence
+and append them to the output list.
 
 """
 
