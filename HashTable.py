@@ -34,6 +34,39 @@ class HashTable:
                 else:
                     self.data[next_slot] = val
                     
+    def get(self, key):
+        start_slot = self.hash_function(key, len(self.slots))
+        
+        data = None
+        stop = False
+        found = False
+        position = start_slot
+        
+        while self.slots[position] != None and not found and not stop:
+            if self.slots[position] == key:
+                data = self.data[position]
+                found = True
+            else:
+                position = self.rehash_function(position, len(self.slots))
+                
+                if position == start_slot:
+                    stop = True
+        return data
+    
+    def __getitem___(self, key):
+        return self.get(key)
+    
+    def __Setitem__(self, key, data):
+        self.put(key, data)          
+    
+    def delete(self, key):
+        pass
+    
+    def len(self):
+        pass
+    
+    def in_map(self, key):
+        pass                   
     
     def hash_function(self,key,size):
         return key % size
